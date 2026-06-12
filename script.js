@@ -1,69 +1,56 @@
 // =========================================================================
-// 📁 ÁREA DE EDITAR / CRIAR SEUS ITENS da Biblioteca
-// IMPORTANTE: Em 'categoria' coloque apenas: MESHES, TORSOS, ARMS, LEGS, HEAD, MAPS ou OTHERS
+// 📁 ÁREA DE EDITAR / CRIAR SEUS ITENS
 // =========================================================================
 const bibliotecaMeshes = [
     {
+        id: 0,
         nome: "Espada Cyberpunk V1",
-        categoria: "MESHES", // Filtro selecionado
-        descricao: "Uma espada neon ultra detalhada ideal para jogos de RPG ou mapas futuristas.",
+        categoria: "MESHES",
+        descricao: "Uma espada neon ultra detalhada ideal para jogos de RPG.",
+        descricaoLonga: "Esta espada foi desenvolvida pensando na otimização para jogos mobile e PC no Roblox. Ela conta com malha totalmente limpa, mapeamento UV completo e texturas de emissão de luz (neon) inclusas no pacote. Perfeita para ferramentas de combate ou itens cosméticos de costas.",
         imagem: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500",
         linkDownload: "downloads/espada_cyber.zip",
         formato: ".FBX",
-        poligonos: "2.450",
         tamanho: "1.2 MB"
     },
     {
+        id: 1,
         nome: "Tronco Robótico Sci-Fi",
-        categoria: "TORSOS", // Filtro selecionado
-        descricao: "Modelo de Torso mecânico estilizado para personagens cibernéticos customizados.",
+        categoria: "TORSOS",
+        descricao: "Modelo de Torso mecânico estilizado para personagens cibernéticos.",
+        descricaoLonga: "Um torso completo pronto para substituição de pacotes de corpo (R15) no Roblox Studio. Linhas minimalistas e encaixe perfeito com as animações padrões do motor do jogo. Não causa bugs de colisão.",
         imagem: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500",
         linkDownload: "downloads/cyber_torso.zip",
         formato: ".OBJ",
-        poligonos: "4.120",
         tamanho: "2.5 MB"
-    },
-    {
-        nome: "Braço de Androide Esquerdo",
-        categoria: "ARMS", // Filtro selecionado
-        descricao: "Braço robótico detalhado com juntas articuladas pronto para rigging no Studio.",
-        imagem: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500",
-        linkDownload: "downloads/cyber_arm.zip",
-        formato: ".FBX",
-        poligonos: "1.800",
-        tamanho: "980 KB"
-    },
-    // ⬇️ Adicione seus novos itens aqui embaixo seguindo o mesmo padrão:
+    }
 ];
 
 // =========================================================================
-// 🚀 LÓGICA DO SISTEMA (Filtragem e Segurança automática)
+// 🚀 LÓGICA DO SISTEMA (Index e Filtros)
 // =========================================================================
-
 let filtroAtual = "ALL";
 
-// Função para desenhar os cards baseando-se no filtro ativo
 function renderizarBiblioteca() {
     const container = document.getElementById("lista-de-meshes");
-    if (!container) return;
+    if (!container) return; // Se não estiver na index, não executa
 
-    container.innerHTML = ""; // Limpa a tela
+    container.innerHTML = "";
 
-    // Filtra os itens com base na escolha do usuário
     const itensFiltrados = bibliotecaMeshes.filter(item => {
         return filtroAtual === "ALL" || item.categoria.toUpperCase() === filtroAtual;
     });
 
-    // Se não tiver nada na categoria selecionada
     if (itensFiltrados.length === 0) {
         container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--texto-secundario); padding: 40px 0;">Nenhum item encontrado nesta categoria.</p>`;
         return;
     }
 
-    // Cria os cards na tela de forma segura
     itensFiltrados.forEach(item => {
         const card = document.createElement("div");
         card.className = "card-mesh";
+        // O clique no card agora abre a página do produto passando o ID por link
+        card.onclick = () => window.location.href = `produto.html?id=${item.id}`;
 
         card.innerHTML = `
             <div class="img-container">
@@ -80,50 +67,90 @@ function renderizarBiblioteca() {
                         <span class="detalhes-valor">${escapeHTML(item.formato)}</span>
                     </div>
                     <div class="detalhes-linha">
-                        <span class="detalhes-label">Polígonos:</span>
-                        <span class="detalhes-valor">${escapeHTML(item.poligonos)}</span>
-                    </div>
-                    <div class="detalhes-linha">
                         <span class="detalhes-label">Tamanho:</span>
                         <span class="detalhes-valor">${escapeHTML(item.tamanho)}</span>
                     </div>
                 </div>
-
-                <a href="${escapeHTML(item.linkDownload)}" class="btn-download" download>
-                    ⬇️ Baixar Asset
-                </a>
+                <span class="btn-ver-mais">Visualizar Detalhes ➔</span>
             </div>
         `;
         container.appendChild(card);
     });
 }
 
-// Configura a ação de clique nos botões de filtro
 function inicializarFiltros() {
     const botoes = document.querySelectorAll(".filter-btn");
-
     botoes.forEach(botao => {
         botao.addEventListener("click", () => {
-            // Remove a classe ativa de todos e coloca no botão clicado
             botoes.forEach(b => b.classList.remove("active"));
             botao.classList.add("active");
-
-            // Atualiza o filtro e recarrega a lista
             filtroAtual = botao.getAttribute("data-filter").toUpperCase();
             renderizarBiblioteca();
         });
     });
 }
 
-// Escapar caracteres para segurança extra (Anti-XSS)
+// =========================================================================
+// 📖 LÓGICA DA PÁGINA DE DETALHES (produto.html)
+// =========================================================================
+function carregarPaginaProduto() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idProduto = parseInt(urlParams.get('id'));
+
+    const produto = bibliotecaMeshes.find(item => item.id === idProduto);
+    const container = document.getElementById("detalhe-produto");
+
+    if (!container) return;
+
+    if (!produto) {
+        container.innerHTML = `<h2>Asset não encontrado.</h2><a href="index.html" class="btn-back">Voltar para a Home</a>`;
+        return;
+    }
+
+    // Injeta os dados detalhados na página interna
+    container.innerHTML = `
+        <a href="index.html" class="btn-back">← Voltar para a Galeria</a>
+        <div class="produto-wrapper">
+            <div class="produto-media">
+                <img src="${escapeHTML(produto.imagem)}" alt="${escapeHTML(produto.nome)}">
+            </div>
+            <div class="produto-info">
+                <span class="badge-categoria">${escapeHTML(produto.categoria)}</span>
+                <h1>${escapeHTML(produto.nome)}</h1>
+                <p class="descricao-longa">${escapeHTML(produto.descricaoLonga)}</p>
+                
+                <div class="detalhes-tecnicos">
+                    <div class="detalhes-linha">
+                        <span class="detalhes-label">Formato do Arquivo:</span>
+                        <span class="detalhes-valor">${escapeHTML(produto.formato)}</span>
+                    </div>
+                    <div class="detalhes-linha">
+                        <span class="detalhes-label">Espaço em Disco:</span>
+                        <span class="detalhes-valor">${escapeHTML(produto.tamanho)}</span>
+                    </div>
+                </div>
+
+                <a href="${escapeHTML(produto.linkDownload)}" class="btn-download" download>
+                    ⬇️ Baixar Arquivo Completo
+                </a>
+            </div>
+        </div>
+    `;
+}
+
 function escapeHTML(string) {
     return String(string).replace(/[&<>"']/g, function (s) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
     });
 }
 
-// Inicia tudo assim que a página abrir
+// Inicialização inteligente dependendo de qual página está aberta
 window.addEventListener("DOMContentLoaded", () => {
-    inicializarFiltros();
-    renderizarBiblioteca();
+    if (document.getElementById("lista-de-meshes")) {
+        inicializarFiltros();
+        renderizarBiblioteca();
+    }
+    if (document.getElementById("detalhe-produto")) {
+        carregarPaginaProduto();
+    }
 });
