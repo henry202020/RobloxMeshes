@@ -34,11 +34,10 @@ bibliotecaMeshes.push(
         formato: ".ZIP/.mesh",
         tamanho: "1.20 MB"
     },
-    // 🌟 NOVO ESPAÇO VAZIO 1 (Substitua os dados abaixo pelos do seu novo item)
     {
         id: 2,
         nome: "Female Body R6 - Mommy",
-        categoria: ["BODY"], // Defina as categorias aqui
+        categoria: ["BODY"], 
         descricao: "Mommy - R6",
         descricaoLonga: "MOMMY - Includes: Torso, Legs, Arms and Torso.",
         imagens: [
@@ -46,17 +45,16 @@ bibliotecaMeshes.push(
             "https://i.postimg.cc/zvLtrz58/Front.png", 
             "https://i.postimg.cc/J0y6Lrmm/Back.png", 
             "https://i.postimg.cc/D0WjTvF2/Left.png", 
-            "https://i.postimg.cc/yxJQH1Bd/Right.png""
+            "https://i.postimg.cc/yxJQH1Bd/Right.png" // ✨ Corrigido! Removido as aspas duplas extras
         ],
         linkDownload: "https://direct-link.net/5591385/zWkh8WDyukW5",
         formato: ".ZIP/.mesh",
         tamanho: "1.18 MB"
     },
-    // 🌟 NOVO ESPAÇO VAZIO 2 (Substitua os dados abaixo pelos do seu novo item)
     {
         id: 3,
         nome: "Nome do Novo Item 2",
-        categoria: ["ANIMATIONS"], // Defina as categorias aqui
+        categoria: ["ANIMATIONS"], 
         descricao: "Descrição curta que aparece no card principal.",
         descricaoLonga: "Descrição detalhada que aparece na página interna do produto.",
         imagens: [
