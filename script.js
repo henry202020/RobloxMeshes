@@ -17,12 +17,12 @@ const bibliotecaMeshes = [
     },
     {
         id: 1,
-        nome: "Sci-Fi Robotic Torso",
-        categoria: "TORSOS",
+        nome: "",
+        categoria: "MESHES",
         descricao: "Stylized mechanical torso model for custom cyber characters.",
         descricaoLonga: "A complete torso ready for character package replacement (R15) in Roblox Studio. Minimalist lines and seamless integration with default engine animations.",
         imagens: [
-            "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500"
+            "https://i.postimg.cc/4NGbsnm4/Female-Body-R6v2-Pleasant-Ana.png"
         ],
         linkDownload: "downloads/cyber_torso.zip",
         formato: ".OBJ",
