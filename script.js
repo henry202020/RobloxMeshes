@@ -78,6 +78,22 @@ function criarBotaoFiltro(categoriaNome) {
     return btn;
 }
 
+// Função auxiliar para verificar se o arquivo é um vídeo
+function verificarSeEhVideo(url) {
+    const urlLower = url.toLowerCase();
+    return urlLower.endsWith('.mp4') || urlLower.endsWith('.webm');
+}
+
+// Retorna a tag correta (video ou img) baseada no link do arquivo
+function gerarTagMidia(url, idAtributo = "") {
+    const idStr = idAtributo ? `id="${idAtributo}"` : "";
+    if (verificarSeEhVideo(url)) {
+        return `<video ${idStr} src="${escapeHTML(url)}" autoplay loop muted playsinline></video>`;
+    } else {
+        return `<img ${idStr} src="${escapeHTML(url)}" alt="Asset Media">`;
+    }
+}
+
 function renderizarBiblioteca() {
     const container = document.getElementById("lista-de-meshes");
     if (!container) return;
@@ -101,14 +117,17 @@ function renderizarBiblioteca() {
     itensFiltrados.forEach(item => {
         const card = document.createElement("div");
         card.className = "card-mesh";
-        const imagemCapa = item.imagens[0] || "";
+        const midiaCapaUrl = item.imagens[0] || "";
+        
+        // Gera dinamicamente se o card principal vai ter uma tag <video> ou <img>
+        const tagMidiaCapa = gerarTagMidia(midiaCapaUrl);
 
         const categoriasTexto = Array.isArray(item.categoria) ? item.categoria.join(" / ") : item.categoria;
 
         card.innerHTML = `
             <div class="img-container" onclick="window.location.href='produto.html?id=${item.id}'">
                 <span class="badge-categoria">${escapeHTML(categoriasTexto)}</span>
-                <img src="${escapeHTML(imagemCapa)}" alt="${escapeHTML(item.nome)}">
+                ${tagMidiaCapa}
             </div>
             <div class="card-content">
                 <div onclick="window.location.href='produto.html?id=${item.id}'">
@@ -131,7 +150,7 @@ function renderizarBiblioteca() {
 }
 
 // =========================================================================
-// 📖 IMAGE SLIDER LOGIC
+// 📖 IMAGE/VIDEO SLIDER LOGIC
 // =========================================================================
 let slideIndex = 0;
 let fotosDoProduto = [];
@@ -154,12 +173,15 @@ function carregarPaginaProduto() {
     const mostrarSetas = fotosDoProduto.length > 1 ? 'flex' : 'none';
     const categoriasTexto = Array.isArray(produto.categoria) ? produto.categoria.join(" / ") : produto.categoria;
 
+    // Gera a primeira mídia do slider interno (pode ser vídeo ou imagem)
+    const tagMidiaSlider = gerarTagMidia(fotosDoProduto[0], "slider-img");
+
     container.innerHTML = `
         <a href="index.html" class="btn-back">← Back to Gallery</a>
         <div class="produto-wrapper">
             <div class="produto-media">
-                <div class="slider-container">
-                    <img id="slider-img" src="${escapeHTML(fotosDoProduto[0])}" alt="${escapeHTML(produto.nome)}">
+                <div class="slider-container" id="slider-media-box">
+                    ${tagMidiaSlider}
                     <button class="slide-nav prev" style="display: ${mostrarSetas}" onclick="mudarSlide(-1)">&#10094;</button>
                     <button class="slide-nav next" style="display: ${mostrarSetas}" onclick="mazerSlide(1)">&#10095;</button>
                 </div>
@@ -193,12 +215,27 @@ window.mudarSlide = function(direcao) {
     if (slideIndex >= fotosDoProduto.length) slideIndex = 0;
     if (slideIndex < 0) slideIndex = fotosDoProduto.length - 1;
     
-    const imagemElemento = document.getElementById("slider-img");
-    if (imagemElemento) {
-        imagemElemento.classList.remove("fade-anim");
-        void imagemElemento.offsetWidth; 
-        imagemElemento.src = fotosDoProduto[slideIndex];
-        imagemElemento.classList.add("fade-anim");
+    const sliderBox = document.getElementById("slider-media-box");
+    if (sliderBox) {
+        // Remove os botões temporariamente para reconstruir a tag de mídia sem deletá-los
+        const prevBtn = sliderBox.querySelector(".slide-nav.prev");
+        const nextBtn = sliderBox.querySelector(".slide-nav.next");
+        
+        // Reconstrói o conteúdo interno baseado se o próximo slide é vídeo ou imagem
+        const novaMidiaUrl = fotosDoProduto[slideIndex];
+        const novaTag = gerarTagMidia(novaMidiaUrl, "slider-img");
+        
+        sliderBox.innerHTML = novaTag;
+        
+        // Readiciona os botões de navegação
+        if (prevBtn) sliderBox.appendChild(prevBtn);
+        if (nextBtn) sliderBox.appendChild(nextBtn);
+
+        // Aplica a animação de Fade no novo elemento criado
+        const elementoCriado = document.getElementById("slider-img");
+        if (elementoCriado) {
+            elementoCriado.classList.add("fade-anim");
+        }
     }
 }
 
@@ -206,7 +243,7 @@ window.mazerSlide = window.mudarSlide;
 
 function escapeHTML(string) {
     return String(string).replace(/[&<>"']/g, function (s) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
+        return { '&': '&amp;', '<': '&lt;', '>': '>‘', '"': '&quot;', "'": '&#39;' }[s];
     });
 }
 
