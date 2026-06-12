@@ -41,7 +41,7 @@ bibliotecaMeshes.push(
         descricao: "Mommy - R6",
         descricaoLonga: "MOMMY - Includes: Torso, Legs, Arms and Torso.",
         imagens: [
-            "https://i.postimg.cc/L5qCp9Rm/Female-Body-R6-Mommy.png", 
+            "https://i.postimg.cc/SKhvMYF1/Female-Body-R6-Mommy.png", 
             "https://i.postimg.cc/zvLtrz58/Front.png", 
             "https://i.postimg.cc/J0y6Lrmm/Back.png", 
             "https://i.postimg.cc/D0WjTvF2/Left.png", 
