@@ -1,40 +1,70 @@
-// 🛠️ SUA BIBLIOTECA DE ITENS
-// Para adicionar um novo item, copie de um "{" até o "}," e mude os dados.
+// =========================================================================
+// 📁 ÁREA DE EDITAR / CRIAR SEUS ITENS da Biblioteca
+// IMPORTANTE: Em 'categoria' coloque apenas: MESHES, TORSOS, ARMS, LEGS, HEAD, MAPS ou OTHERS
+// =========================================================================
 const bibliotecaMeshes = [
     {
         nome: "Espada Cyberpunk V1",
-        categoria: "Armas",
+        categoria: "MESHES", // Filtro selecionado
         descricao: "Uma espada neon ultra detalhada ideal para jogos de RPG ou mapas futuristas.",
         imagem: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500",
         linkDownload: "downloads/espada_cyber.zip",
-        formato: ".FBX / .OBJ",
+        formato: ".FBX",
         poligonos: "2.450",
         tamanho: "1.2 MB"
     },
     {
-        nome: "Árvore Low-Poly Anime",
-        categoria: "Cenário",
-        descricao: "Árvore estilizada perfeita para mapas de simuladores e jogos de aventura.",
-        imagem: "https://images.unsplash.com/photo-1542224566-6e85f2e6772f?w=500",
-        linkDownload: "downloads/arvore_anime.zip",
+        nome: "Tronco Robótico Sci-Fi",
+        categoria: "TORSOS", // Filtro selecionado
+        descricao: "Modelo de Torso mecânico estilizado para personagens cibernéticos customizados.",
+        imagem: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500",
+        linkDownload: "downloads/cyber_torso.zip",
+        formato: ".OBJ",
+        poligonos: "4.120",
+        tamanho: "2.5 MB"
+    },
+    {
+        nome: "Braço de Androide Esquerdo",
+        categoria: "ARMS", // Filtro selecionado
+        descricao: "Braço robótico detalhado com juntas articuladas pronto para rigging no Studio.",
+        imagem: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500",
+        linkDownload: "downloads/cyber_arm.zip",
         formato: ".FBX",
-        poligonos: "480",
-        tamanho: "340 KB"
-    }
+        poligonos: "1.800",
+        tamanho: "980 KB"
+    },
+    // ⬇️ Adicione seus novos itens aqui embaixo seguindo o mesmo padrão:
 ];
 
-// FUNÇÃO QUE GERA O VISUAL (Segura, impede injeção de códigos maliciosos)
-function carregarBiblioteca() {
+// =========================================================================
+// 🚀 LÓGICA DO SISTEMA (Filtragem e Segurança automática)
+// =========================================================================
+
+let filtroAtual = "ALL";
+
+// Função para desenhar os cards baseando-se no filtro ativo
+function renderizarBiblioteca() {
     const container = document.getElementById("lista-de-meshes");
     if (!container) return;
-    
-    container.innerHTML = ""; 
 
-    bibliotecaMeshes.forEach(item => {
+    container.innerHTML = ""; // Limpa a tela
+
+    // Filtra os itens com base na escolha do usuário
+    const itensFiltrados = bibliotecaMeshes.filter(item => {
+        return filtroAtual === "ALL" || item.categoria.toUpperCase() === filtroAtual;
+    });
+
+    // Se não tiver nada na categoria selecionada
+    if (itensFiltrados.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--texto-secundario); padding: 40px 0;">Nenhum item encontrado nesta categoria.</p>`;
+        return;
+    }
+
+    // Cria os cards na tela de forma segura
+    itensFiltrados.forEach(item => {
         const card = document.createElement("div");
         card.className = "card-mesh";
 
-        // Criação dos elementos de forma limpa e segura
         card.innerHTML = `
             <div class="img-container">
                 <span class="badge-categoria">${escapeHTML(item.categoria)}</span>
@@ -60,7 +90,7 @@ function carregarBiblioteca() {
                 </div>
 
                 <a href="${escapeHTML(item.linkDownload)}" class="btn-download" download>
-                    ⬇️ Baixar Mesh
+                    ⬇️ Baixar Asset
                 </a>
             </div>
         `;
@@ -68,11 +98,32 @@ function carregarBiblioteca() {
     });
 }
 
-// Função de segurança extra para evitar que textos virem códigos maliciosos (XSS)
+// Configura a ação de clique nos botões de filtro
+function inicializarFiltros() {
+    const botoes = document.querySelectorAll(".filter-btn");
+
+    botoes.forEach(botao => {
+        botao.addEventListener("click", () => {
+            // Remove a classe ativa de todos e coloca no botão clicado
+            botoes.forEach(b => b.classList.remove("active"));
+            botao.classList.add("active");
+
+            // Atualiza o filtro e recarrega a lista
+            filtroAtual = botao.getAttribute("data-filter").toUpperCase();
+            renderizarBiblioteca();
+        });
+    });
+}
+
+// Escapar caracteres para segurança extra (Anti-XSS)
 function escapeHTML(string) {
     return String(string).replace(/[&<>"']/g, function (s) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
     });
 }
 
-window.onload = carregarBiblioteca;
+// Inicia tudo assim que a página abrir
+window.addEventListener("DOMContentLoaded", () => {
+    inicializarFiltros();
+    renderizarBiblioteca();
+});
