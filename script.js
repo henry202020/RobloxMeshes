@@ -5,27 +5,25 @@
 const bibliotecaMeshes = [
     {
         id: 0,
-        nome: "Cyberpunk Sword V1",
-        // 🌟 AGORA VOCÊ USA COLCHETES PARA COLOCAR MAIS DE UMA CATEGORIA:
-        categoria: ["MESHES", "OTHERS"], 
-        descricao: "An ultra-detailed neon sword perfect for RPG games.",
-        descricaoLonga: "This sword was developed with optimization in mind for mobile and PC games on Roblox. Full UV mapping and light emission (neon) textures are included in the package.",
-        imagens: ["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500"],
-        linkDownload: "downloads/espada_cyber.zip",
-        formato: ".FBX",
-        tamanho: "1.2 MB"
+        nome: "Female Body R6 - Female 1",
+        categoria: ["BODY"], 
+        descricao: "Female 1 - R6",
+        descricaoLonga: "FEMALE - Includes: Torso, Legs, Arms and Torso.",
+        imagens: ["https://i.postimg.cc/Kv1cK86H/Female-Body-R6.png"],
+        linkDownload: "https://www.mediafire.com/file/u01c7z6uahc3isf/FemaleBodyV1.zip/file",
+        formato: ".ZIP/.mesh",
+        tamanho: "1.58 MB"
     },
     {
         id: 1,
-        nome: "Sci-Fi Cyborg Suit",
-        // 🌟 Este item vai aparecer tanto se o usuário clicar em TORSOS, ARMS ou LEGS!
-        categoria: ["TORSOS", "ARMS", "LEGS"], 
-        descricao: "Full mechanical armor set for custom characters.",
-        descricaoLonga: "A complete character package replacement (R15) ready for Roblox Studio.",
-        imagens: ["https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500"],
-        linkDownload: "downloads/cyber_suit.zip",
-        formato: ".OBJ",
-        tamanho: "4.8 MB"
+        nome: "Female Body R6 - Pleasant Ana",
+        categoria: ["BODY"], 
+        descricao: "Pleasant Ana - R6",
+        descricaoLonga: "PLEASANT ANA - Includes: Torso, Legs, Arms and Torso.",
+        imagens: ["https://i.postimg.cc/4NGbsnm4/Female-Body-R6v2-Pleasant-Ana.png"],
+        linkDownload: "https://www.mediafire.com/file/rrksjeffxb7m7ag/FemaleBodyV1_-_Pleasant_Ana.zip/file",
+        formato: ".ZIP/.mesh",
+        tamanho: "1.20 MB"
     }
 ];
 
