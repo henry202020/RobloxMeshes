@@ -13,6 +13,9 @@ bibliotecaMeshes.push(
             "https://i.postimg.cc/66hPnss1/Left.png", 
             "https://i.postimg.cc/DfcNLVk2/Right.png"
         ],
+        // 🛠️ Configuração de Offset (Padrão centralizado: 50% 50%)
+        offsetX: "50%",
+        offsetY: "50%",
         linkDownload: "https://link-center.net/5591385/AFOG538Lfitj",
         formato: ".ZIP/.mesh",
         tamanho: "1.58 MB"
@@ -30,6 +33,8 @@ bibliotecaMeshes.push(
             "https://i.postimg.cc/t4MR47tV/Left.png", 
             "https://i.postimg.cc/fRrWRkjc/Right.png"
         ],
+        offsetX: "50%",
+        offsetY: "50%",
         linkDownload: "https://link-hub.net/5591385/XOBhNwX7PYMy",
         formato: ".ZIP/.mesh",
         tamanho: "1.20 MB"
@@ -45,8 +50,10 @@ bibliotecaMeshes.push(
             "https://i.postimg.cc/zvLtrz58/Front.png", 
             "https://i.postimg.cc/J0y6Lrmm/Back.png", 
             "https://i.postimg.cc/D0WjTvF2/Left.png", 
-            "https://i.postimg.cc/yxJQH1Bd/Right.png" // ✨ Corrigido! Removido as aspas duplas extras
+            "https://i.postimg.cc/yxJQH1Bd/Right.png"
         ],
+        offsetX: "54%",
+        offsetY: "50%",
         linkDownload: "https://direct-link.net/5591385/zWkh8WDyukW5",
         formato: ".ZIP/.mesh",
         tamanho: "1.18 MB"
@@ -64,6 +71,8 @@ bibliotecaMeshes.push(
             "https://i.postimg.cc/D0WjTvF2/Left.png", 
             "https://i.postimg.cc/yxJQH1Bd/Right.png"
         ],
+        offsetX: "50%",
+        offsetY: "50%",
         linkDownload: "https://seu-link-aqui.com",
         formato: ".ZIP / .fbx",
         tamanho: "0.00 MB"
