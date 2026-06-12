@@ -1,13 +1,13 @@
 // =========================================================================
-// 📁 ÁREA DE EDITAR / CRIAR SEUS ITENS
+// 📁 EDIT / CREATE YOUR ITEMS HERE
 // =========================================================================
 const bibliotecaMeshes = [
     {
         id: 0,
-        nome: "Espada Cyberpunk V1",
+        nome: "Cyberpunk Sword V1",
         categoria: "MESHES",
-        descricao: "Uma espada neon ultra detalhada ideal para jogos de RPG.",
-        descricaoLonga: "Esta espada foi desenvolvida pensando na otimização para jogos mobile e PC no Roblox. Mapeamento UV completo e texturas de emissão de luz (neon) inclusas no pacote.",
+        descricao: "An ultra-detailed neon sword perfect for RPG games.",
+        descricaoLonga: "This sword was developed with optimization in mind for mobile and PC games on Roblox. Full UV mapping and light emission (neon) textures are included in the package.",
         imagens: [
             "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500",
             "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500"
@@ -18,10 +18,10 @@ const bibliotecaMeshes = [
     },
     {
         id: 1,
-        nome: "Tronco Robótico Sci-Fi",
+        nome: "Sci-Fi Robotic Torso",
         categoria: "TORSOS",
-        descricao: "Modelo de Torso mecânico estilizado para personagens cibernéticos.",
-        descricaoLonga: "Um torso completo pronto para substituição de pacotes de corpo (R15) no Roblox Studio. Linhas minimalistas e encaixe perfeito.",
+        descricao: "Stylized mechanical torso model for custom cyber characters.",
+        descricaoLonga: "A complete torso ready for character package replacement (R15) in Roblox Studio. Minimalist lines and seamless integration with default engine animations.",
         imagens: [
             "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500"
         ],
@@ -32,7 +32,7 @@ const bibliotecaMeshes = [
 ];
 
 // =========================================================================
-// 🚀 LÓGICA DO SCRIPT
+// 🚀 SYSTEM LOGIC
 // =========================================================================
 let filtroAtual = "ALL";
 
@@ -47,7 +47,7 @@ function renderizarBiblioteca() {
     });
 
     if (itensFiltrados.length === 0) {
-        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--texto-secundario); padding: 40px 0;">Nenhum item encontrado.</p>`;
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--texto-secundario); padding: 40px 0;">No items found in this category.</p>`;
         return;
     }
 
@@ -77,7 +77,7 @@ function renderizarBiblioteca() {
                 </div>
                 
                 <a href="${escapeHTML(item.linkDownload)}" class="btn-shortcut-download" download>
-                    ⬇️ Baixar Agora
+                    ⬇️ Download Now
                 </a>
             </div>
         `;
@@ -98,7 +98,7 @@ function inicializarFiltros() {
 }
 
 // =========================================================================
-// 📖 LÓGICA DO SLIDE DE IMAGENS
+// 📖 IMAGE SLIDER LOGIC
 // =========================================================================
 let slideIndex = 0;
 let fotosDoProduto = [];
@@ -113,7 +113,7 @@ function carregarPaginaProduto() {
     if (!container) return;
 
     if (!produto) {
-        container.innerHTML = `<h2>Asset não encontrado.</h2><a href="index.html" class="btn-back">Voltar para a Home</a>`;
+        container.innerHTML = `<h2>Asset not found.</h2><a href="index.html" class="btn-back">Back to Home</a>`;
         return;
     }
 
@@ -123,7 +123,7 @@ function carregarPaginaProduto() {
     const mostrarSetas = fotosDoProduto.length > 1 ? 'flex' : 'none';
 
     container.innerHTML = `
-        <a href="index.html" class="btn-back">← Voltar para a Galeria</a>
+        <a href="index.html" class="btn-back">← Back to Gallery</a>
         <div class="produto-wrapper">
             <div class="produto-media">
                 <div class="slider-container">
@@ -139,17 +139,17 @@ function carregarPaginaProduto() {
                 
                 <div class="detalhes-tecnicos" style="border-left: 2px solid var(--cor-acento); padding-left: 10px;">
                     <div class="detalhes-linha" style="margin-bottom: 5px;">
-                        <span class="detalhes-label">Formato:</span>
+                        <span class="detalhes-label">File Format:</span>
                         <span class="detalhes-valor">${escapeHTML(produto.formato)}</span>
                     </div>
                     <div class="detalhes-linha">
-                        <span class="detalhes-label">Tamanho:</span>
+                        <span class="detalhes-label">Disk Space:</span>
                         <span class="detalhes-valor">${escapeHTML(produto.tamanho)}</span>
                     </div>
                 </div>
 
                 <a href="${escapeHTML(produto.linkDownload)}" class="btn-download" download>
-                    ⬇️ Baixar Arquivo Completo
+                    ⬇️ Download Complete File
                 </a>
             </div>
         </div>
