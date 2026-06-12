@@ -52,7 +52,7 @@ bibliotecaMeshes.push(
             "https://i.postimg.cc/D0WjTvF2/Left.png", 
             "https://i.postimg.cc/yxJQH1Bd/Right.png"
         ],
-        offsetX: "47%",
+        offsetX: "30%",
         offsetY: "50%",
         linkDownload: "https://direct-link.net/5591385/zWkh8WDyukW5",
         formato: ".ZIP/.mesh",
