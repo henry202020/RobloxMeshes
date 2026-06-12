@@ -10,19 +10,13 @@
 
     <header>
         <h1>Roblox Meshes</h1>
-        <p>Roblox asset library for condo games</p>
+        <p>Your premium and organized 3D asset library</p>
     </header>
 
     <div class="container">
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="ALL">All</button>
-            <button class="filter-btn" data-filter="MESHES">Meshes</button>
-            <button class="filter-btn" data-filter="TORSOS">Torsos</button>
-            <button class="filter-btn" data-filter="ARMS">Arms</button>
-            <button class="filter-btn" data-filter="LEGS">Legs</button>
-            <button class="filter-btn" data-filter="HEAD">Head</button>
-            <button class="filter-btn" data-filter="MAPS">Maps</button>
-            <button class="filter-btn" data-filter="OTHERS">Others</button>
+        <div id="filter-container" class="filter-container">
+            <div id="main-filters" class="filter-bar"></div>
+            <div id="extra-filters" class="filter-dropdown"></div>
         </div>
 
         <div id="lista-de-meshes" class="grid-meshes"></div>
