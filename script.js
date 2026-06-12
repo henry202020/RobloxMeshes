@@ -8,7 +8,6 @@ const bibliotecaMeshes = [
         categoria: "MESHES",
         descricao: "Uma espada neon ultra detalhada ideal para jogos de RPG.",
         descricaoLonga: "Esta espada foi desenvolvida pensando na otimização para jogos mobile e PC no Roblox. Mapeamento UV completo e texturas de emissão de luz (neon) inclusas no pacote.",
-        // 📷 VOCÊ PODE COLOCAR UMA OU MAIS FOTOS AQUI DENTRO DESSES COLCHETES:
         imagens: [
             "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500",
             "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500"
@@ -33,7 +32,7 @@ const bibliotecaMeshes = [
 ];
 
 // =========================================================================
-// 🚀 LÓGICA DO SCRIPT (Home, Filtros e Atalho de Download)
+// 🚀 LÓGICA DO SCRIPT
 // =========================================================================
 let filtroAtual = "ALL";
 
@@ -56,7 +55,6 @@ function renderizarBiblioteca() {
         const card = document.createElement("div");
         card.className = "card-mesh";
 
-        // Primeira imagem da lista serve como capa na home
         const imagemCapa = item.imagens[0] || "";
 
         card.innerHTML = `
@@ -64,18 +62,15 @@ function renderizarBiblioteca() {
                 <span class="badge-categoria">${escapeHTML(item.categoria)}</span>
                 <img src="${escapeHTML(imagemCapa)}" alt="${escapeHTML(item.nome)}">
             </div>
+            
             <div class="card-content">
-                <div onclick="window.location.href='produto.html?id=${item.id}'" style="cursor:pointer;">
+                <div onclick="window.location.href='produto.html?id=${item.id}'">
                     <h2>${escapeHTML(item.nome)}</h2>
                     <p class="descricao">${escapeHTML(item.descricao)}</p>
                     
                     <div class="detalhes-tecnicos">
                         <div class="detalhes-linha">
-                            <span class="detalhes-label">Formato:</span>
-                            <span class="detalhes-valor">${escapeHTML(item.formato)}</span>
-                        </div>
-                        <div class="detalhes-linha">
-                            <span class="detalhes-label">Tamanho:</span>
+                            <span class="detalhes-label">${escapeHTML(item.formato)}</span>
                             <span class="detalhes-valor">${escapeHTML(item.tamanho)}</span>
                         </div>
                     </div>
@@ -103,7 +98,7 @@ function inicializarFiltros() {
 }
 
 // =========================================================================
-// 📖 LÓGICA DO SLIDE DE IMAGENS (Página Interna)
+// 📖 LÓGICA DO SLIDE DE IMAGENS
 // =========================================================================
 let slideIndex = 0;
 let fotosDoProduto = [];
@@ -125,7 +120,6 @@ function carregarPaginaProduto() {
     fotosDoProduto = produto.imagens;
     slideIndex = 0;
 
-    // Verifica se precisa mostrar as setas do slide (só se tiver mais de 1 foto)
     const mostrarSetas = fotosDoProduto.length > 1 ? 'flex' : 'none';
 
     container.innerHTML = `
@@ -143,7 +137,45 @@ function carregarPaginaProduto() {
                 <h1>${escapeHTML(produto.nome)}</h1>
                 <p class="descricao-longa">${escapeHTML(produto.descricaoLonga)}</p>
                 
-                <div class="detalhes-tecnicos">
+                <div class="detalhes-tecnicos" style="border-left: 2px solid var(--cor-acento); padding-left: 10px;">
+                    <div class="detalhes-linha" style="margin-bottom: 5px;">
+                        <span class="detalhes-label">Formato:</span>
+                        <span class="detalhes-valor">${escapeHTML(produto.formato)}</span>
+                    </div>
                     <div class="detalhes-linha">
-                        <span class="detalhes-label">Formato do Arquivo:</span>
-                        <span class="detalhes-
+                        <span class="detalhes-label">Tamanho:</span>
+                        <span class="detalhes-valor">${escapeHTML(produto.tamanho)}</span>
+                    </div>
+                </div>
+
+                <a href="${escapeHTML(produto.linkDownload)}" class="btn-download" download>
+                    ⬇️ Baixar Arquivo Completo
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+window.mudarSlide = function(direcao) {
+    slideIndex += direcao;
+    if (slideIndex >= fotosDoProduto.length) slideIndex = 0;
+    if (slideIndex < 0) slideIndex = fotosDoProduto.length - 1;
+    
+    document.getElementById("slider-img").src = fotosDoProduto[slideIndex];
+}
+
+function escapeHTML(string) {
+    return String(string).replace(/[&<>"']/g, function (s) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
+    });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("lista-de-meshes")) {
+        inicializarFiltros();
+        renderizarBiblioteca();
+    }
+    if (document.getElementById("detalhe-produto")) {
+        carregarPaginaProduto();
+    }
+});
