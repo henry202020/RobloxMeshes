@@ -39,18 +39,20 @@ const bibliotecaMeshes = [
     // 🌟 NOVO ESPAÇO VAZIO 1 (Substitua os dados abaixo pelos do seu novo item)
     {
         id: 2,
-        nome: "Nome do Novo Item 1",
-        categoria: ["ANIMATIONS", "MESHES"], // Defina as categorias aqui
-        descricao: "Descrição curta que aparece no card principal.",
-        descricaoLonga: "Descrição detalhada que aparece na página interna do produto.",
+        nome: "Female Body R6 - Mommy",
+        categoria: ["BODY"], // Defina as categorias aqui
+        descricao: "Mommy - R6",
+        descricaoLonga: "MOMMY - Includes: Torso, Legs, Arms and Torso.",
         imagens: [
-            "https://via.placeholder.com/500x350?text=Imagem+1", 
-            "https://via.placeholder.com/500x350?text=Imagem+2",
-            "https://via.placeholder.com/500x350?text=Imagem+3"
+            "https://i.postimg.cc/L5qCp9Rm/Female-Body-R6-Mommy.png", 
+            "https://i.postimg.cc/zvLtrz58/Front.png", 
+            "https://i.postimg.cc/J0y6Lrmm/Back.png", 
+            "https://i.postimg.cc/D0WjTvF2/Left.png", 
+            "https://i.postimg.cc/yxJQH1Bd/Right.png""
         ],
-        linkDownload: "https://seu-link-aqui.com",
-        formato: ".ZIP / .rbxm",
-        tamanho: "0.00 MB"
+        linkDownload: "https://direct-link.net/5591385/zWkh8WDyukW5",
+        formato: ".ZIP/.mesh",
+        tamanho: "1.18 MB"
     },
     // 🌟 NOVO ESPAÇO VAZIO 2 (Substitua os dados abaixo pelos do seu novo item)
     {
@@ -60,8 +62,11 @@ const bibliotecaMeshes = [
         descricao: "Descrição curta que aparece no card principal.",
         descricaoLonga: "Descrição detalhada que aparece na página interna do produto.",
         imagens: [
-            "https://via.placeholder.com/500x350?text=Imagem+1", 
-            "https://via.placeholder.com/500x350?text=Imagem+2"
+            "https://i.postimg.cc/XYzNYXcB/Female-Body-R6v2-Pleasant-Ana.png", 
+            "https://i.postimg.cc/zvLtrz58/Front.png", 
+            "https://i.postimg.cc/J0y6Lrmm/Back.png", 
+            "https://i.postimg.cc/D0WjTvF2/Left.png", 
+            "https://i.postimg.cc/yxJQH1Bd/Right.png"
         ],
         linkDownload: "https://seu-link-aqui.com",
         formato: ".ZIP / .fbx",
