@@ -4,16 +4,15 @@
 const bibliotecaMeshes = [
     {
         id: 0,
-        nome: "Cyberpunk Sword V1",
+        nome: "Female Body R6",
         categoria: "MESHES",
         descricao: "An ultra-detailed neon sword perfect for RPG games.",
-        descricaoLonga: "This sword was developed with optimization in mind for mobile and PC games on Roblox. Full UV mapping and light emission (neon) textures are included in the package.",
+        descricaoLonga: "Includes: Torso, Legs, Arms and Torso",
         imagens: [
-            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500",
-            "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500"
+            "https://i.postimg.cc/Kv1cK86H/Female-Body-R6.png"
         ],
         linkDownload: "downloads/espada_cyber.zip",
-        formato: ".FBX",
+        formato: ".mesh",
         tamanho: "1.2 MB"
     },
     {
