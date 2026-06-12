@@ -35,6 +35,37 @@ const bibliotecaMeshes = [
         linkDownload: "https://link-hub.net/5591385/XOBhNwX7PYMy",
         formato: ".ZIP/.mesh",
         tamanho: "1.20 MB"
+    },
+    // 🌟 NOVO ESPAÇO VAZIO 1 (Substitua os dados abaixo pelos do seu novo item)
+    {
+        id: 2,
+        nome: "Nome do Novo Item 1",
+        categoria: ["ANIMATIONS", "MESHES"], // Defina as categorias aqui
+        descricao: "Descrição curta que aparece no card principal.",
+        descricaoLonga: "Descrição detalhada que aparece na página interna do produto.",
+        imagens: [
+            "https://via.placeholder.com/500x350?text=Imagem+1", 
+            "https://via.placeholder.com/500x350?text=Imagem+2",
+            "https://via.placeholder.com/500x350?text=Imagem+3"
+        ],
+        linkDownload: "https://seu-link-aqui.com",
+        formato: ".ZIP / .rbxm",
+        tamanho: "0.00 MB"
+    },
+    // 🌟 NOVO ESPAÇO VAZIO 2 (Substitua os dados abaixo pelos do seu novo item)
+    {
+        id: 3,
+        nome: "Nome do Novo Item 2",
+        categoria: ["ANIMATIONS"], // Defina as categorias aqui
+        descricao: "Descrição curta que aparece no card principal.",
+        descricaoLonga: "Descrição detalhada que aparece na página interna do produto.",
+        imagens: [
+            "https://via.placeholder.com/500x350?text=Imagem+1", 
+            "https://via.placeholder.com/500x350?text=Imagem+2"
+        ],
+        linkDownload: "https://seu-link-aqui.com",
+        formato: ".ZIP / .fbx",
+        tamanho: "0.00 MB"
     }
 ];
 
@@ -166,7 +197,7 @@ function renderizarBiblioteca() {
 }
 
 // =========================================================================
-// 📖 IMAGE SLIDER LOGIC (Corrigida e com Animações)
+// 📖 IMAGE SLIDER LOGIC
 // =========================================================================
 let slideIndex = 0;
 let fotosDoProduto = [];
@@ -183,7 +214,6 @@ function carregarPaginaProduto() {
         return;
     }
 
-    // Carrega TODAS as imagens do array do produto corretamente
     fotosDoProduto = produto.imagens;
     slideIndex = 0;
     
@@ -222,7 +252,6 @@ function carregarPaginaProduto() {
     `;
 }
 
-// Vincula a função ao escopo global garantindo o funcionamento do clique
 window.mudarSlide = function(direcao) {
     if (fotosDoProduto.length <= 1) return;
 
@@ -232,19 +261,13 @@ window.mudarSlide = function(direcao) {
     
     const imagemElemento = document.getElementById("slider-img");
     if (imagemElemento) {
-        // Remove a animação antiga para poder resetar o ciclo
         imagemElemento.classList.remove("fade-anim");
-        
-        // Força o navegador a recalcular o elemento antes de adicionar a animação de novo
         void imagemElemento.offsetWidth; 
-        
-        // Altera a imagem e injeta o efeito de transição suave
         imagemElemento.src = fotosDoProduto[slideIndex];
         imagemElemento.classList.add("fade-anim");
     }
 }
 
-// Atalho alternativo mapeado para evitar conflitos de nomenclatura nas setas HTML
 window.mazerSlide = window.mudarSlide;
 
 function escapeHTML(string) {
