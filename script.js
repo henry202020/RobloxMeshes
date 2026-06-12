@@ -121,7 +121,7 @@ function renderizarBiblioteca() {
                         </div>
                     </div>
                 </div>
-                <a href="${escapeHTML(item.linkDownload)}" class="btn-shortcut-download" download>
+                <a href="${escapeHTML(item.linkDownload)}" class="btn-shortcut-download" target="_blank">
                     ⬇️ Download Now
                 </a>
             </div>
@@ -210,7 +210,7 @@ function escapeHTML(string) {
     });
 }
 
-// 🧠 O SEGREDO ESTÁ AQUI: Espera TODOS os scripts carregarem para desenhar a tela
+// Inicializa o sistema após carregar todos os dados dependentes externos
 window.addEventListener("load", () => {
     if (document.getElementById("filter-container")) {
         gerarBotoesDeFiltro();
