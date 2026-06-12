@@ -9,7 +9,14 @@ const bibliotecaMeshes = [
         categoria: ["BODY"], 
         descricao: "Female 1 - R6",
         descricaoLonga: "FEMALE - Includes: Torso, Legs, Arms and Torso.",
-        imagens: ["https://i.postimg.cc/sfJL7FFH/Female-Body-R6.png"], ["https://i.postimg.cc/MZYLVkkP/Front.png"], ["https://i.postimg.cc/nV1WB88P/Back.png"], ["https://i.postimg.cc/66hPnss1/Left.png"], ["https://i.postimg.cc/DfcNLVk2/Right.png"],
+        // 🌟 CORRIGIDO: Todas as fotos agora estão na mesma lista separadas por vírgula
+        imagens: [
+            "https://i.postimg.cc/sfJL7FFH/Female-Body-R6.png", 
+            "https://i.postimg.cc/MZYLVkkP/Front.png", 
+            "https://i.postimg.cc/nV1WB88P/Back.png", 
+            "https://i.postimg.cc/66hPnss1/Left.png", 
+            "https://i.postimg.cc/DfcNLVk2/Right.png"
+        ],
         linkDownload: "https://link-center.net/5591385/AFOG538Lfitj",
         formato: ".ZIP/.mesh",
         tamanho: "1.58 MB"
@@ -42,7 +49,6 @@ function gerarBotoesDeFiltro() {
     mainFiltersContainer.innerHTML = "";
     extraFiltersContainer.innerHTML = "";
 
-    // 🧠 MUDANÇA: Vasculha todas as listas de categorias e separa cada palavra única
     let todasCategorias = [];
     bibliotecaMeshes.forEach(item => {
         if (Array.isArray(item.categoria)) {
@@ -109,7 +115,6 @@ function renderizarBiblioteca() {
 
     container.innerHTML = "";
 
-    // 🧠 MUDANÇA: O filtro agora checa se a categoria selecionada está DENTRO da lista do produto
     const itensFiltrados = bibliotecaMeshes.filter(item => {
         if (filtroAtual === "ALL") return true;
         
@@ -129,7 +134,6 @@ function renderizarBiblioteca() {
         card.className = "card-mesh";
         const imagemCapa = item.imagens[0] || "";
 
-        // Mostra as categorias no card separadas por uma barra ( / )
         const categoriasTexto = Array.isArray(item.categoria) ? item.categoria.join(" / ") : item.categoria;
 
         card.innerHTML = `
