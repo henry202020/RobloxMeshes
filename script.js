@@ -1,6 +1,5 @@
 // =========================================================================
 // 📁 EDIT / CREATE YOUR ITEMS HERE
-// 💡 Now 'categoria' is a list ['CAT1', 'CAT2']. You can add as many as you want!
 // =========================================================================
 const bibliotecaMeshes = [
     {
@@ -9,7 +8,6 @@ const bibliotecaMeshes = [
         categoria: ["BODY"], 
         descricao: "Female 1 - R6",
         descricaoLonga: "FEMALE - Includes: Torso, Legs, Arms and Torso.",
-        // 🌟 CORRIGIDO: Todas as fotos agora estão na mesma lista separadas por vírgula
         imagens: [
             "https://i.postimg.cc/sfJL7FFH/Female-Body-R6.png", 
             "https://i.postimg.cc/MZYLVkkP/Front.png", 
@@ -162,7 +160,7 @@ function renderizarBiblioteca() {
 }
 
 // =========================================================================
-// 📖 IMAGE SLIDER LOGIC (Product Page)
+// 📖 IMAGE SLIDER LOGIC (Corrigida e com Animações)
 // =========================================================================
 let slideIndex = 0;
 let fotosDoProduto = [];
@@ -179,8 +177,10 @@ function carregarPaginaProduto() {
         return;
     }
 
+    // Carrega TODAS as imagens do array do produto corretamente
     fotosDoProduto = produto.imagens;
     slideIndex = 0;
+    
     const mostrarSetas = fotosDoProduto.length > 1 ? 'flex' : 'none';
     const categoriasTexto = Array.isArray(produto.categoria) ? produto.categoria.join(" / ") : produto.categoria;
 
@@ -191,7 +191,7 @@ function carregarPaginaProduto() {
                 <div class="slider-container">
                     <img id="slider-img" src="${escapeHTML(fotosDoProduto[0])}" alt="${escapeHTML(produto.nome)}">
                     <button class="slide-nav prev" style="display: ${mostrarSetas}" onclick="mudarSlide(-1)">&#10094;</button>
-                    <button class="slide-nav next" style="display: ${mostrarSetas}" onclick="mudarSlide(1)">&#10095;</button>
+                    <button class="slide-nav next" style="display: ${mostrarSetas}" onclick="mazerSlide(1)">&#10095;</button>
                 </div>
             </div>
             <div class="produto-info">
@@ -208,7 +208,7 @@ function carregarPaginaProduto() {
                         <span class="detalhes-valor">${escapeHTML(produto.tamanho)}</span>
                     </div>
                 </div>
-                <a href="${escapeHTML(produto.linkDownload)}" class="btn-download" download>
+                <a href="${escapeHTML(produto.linkDownload)}" class="btn-download" target="_blank">
                     ⬇️ Download Complete File
                 </a>
             </div>
@@ -216,12 +216,30 @@ function carregarPaginaProduto() {
     `;
 }
 
+// Vincula a função ao escopo global garantindo o funcionamento do clique
 window.mudarSlide = function(direcao) {
+    if (fotosDoProduto.length <= 1) return;
+
     slideIndex += direcao;
     if (slideIndex >= fotosDoProduto.length) slideIndex = 0;
     if (slideIndex < 0) slideIndex = fotosDoProduto.length - 1;
-    document.getElementById("slider-img").src = fotosDoProduto[slideIndex];
+    
+    const imagemElemento = document.getElementById("slider-img");
+    if (imagemElemento) {
+        // Remove a animação antiga para poder resetar o ciclo
+        imagemElemento.classList.remove("fade-anim");
+        
+        // Força o navegador a recalcular o elemento antes de adicionar a animação de novo
+        void imagemElemento.offsetWidth; 
+        
+        // Altera a imagem e injeta o efeito de transição suave
+        imagemElemento.src = fotosDoProduto[slideIndex];
+        imagemElemento.classList.add("fade-anim");
+    }
 }
+
+// Atalho alternativo mapeado para evitar conflitos de nomenclatura nas setas HTML
+window.mazerSlide = window.mudarSlide;
 
 function escapeHTML(string) {
     return String(string).replace(/[&<>"']/g, function (s) {
