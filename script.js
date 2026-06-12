@@ -25,7 +25,13 @@ const bibliotecaMeshes = [
         categoria: ["BODY"], 
         descricao: "Pleasant Ana - R6",
         descricaoLonga: "PLEASANT ANA - Includes: Torso, Legs, Arms and Torso.",
-        imagens: ["https://i.postimg.cc/T1kQS6fJ/Female-Body-R6v2-Pleasant-Ana.png"],
+        imagens: [
+            "https://i.postimg.cc/Gh67Fb2m/Female-Body-R6.png", 
+            "https://i.postimg.cc/X7tHfnJJ/Front.png", 
+            "https://i.postimg.cc/ZKX78JRq/Back.png", 
+            "https://i.postimg.cc/tC8S39TJ/Left.png", 
+            "https://i.postimg.cc/YqTn6t94/Right.png"
+        ],
         linkDownload: "https://link-hub.net/5591385/XOBhNwX7PYMy",
         formato: ".ZIP/.mesh",
         tamanho: "1.20 MB"
