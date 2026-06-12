@@ -11,9 +11,9 @@ const bibliotecaMeshes = [
         imagens: [
             "https://i.postimg.cc/Kv1cK86H/Female-Body-R6.png"
         ],
-        linkDownload: "downloads/espada_cyber.zip",
+        linkDownload: "https://www.mediafire.com/file/u01c7z6uahc3isf/FemaleBodyV1.zip/file",
         formato: ".mesh",
-        tamanho: "1.2 MB"
+        tamanho: "1.58 MB"
     },
     {
         id: 1,
