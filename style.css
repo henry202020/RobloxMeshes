@@ -155,7 +155,6 @@ header p {
     cursor: pointer; 
 }
 
-/* 🎬 ADAPTADO: Garante enquadramento ideal para imagens E vídeos na Galeria Principal */
 .img-container img, 
 .img-container video { 
     width: 100%; 
@@ -299,7 +298,6 @@ header p {
     justify-content: center; 
 }
 
-/* 🎬 ADAPTADO: Permite alternar perfeitamente entre fotos e animações em vídeo no Slider Interno */
 .slider-container img, 
 .slider-container video { 
     width: 100%; 
@@ -384,6 +382,80 @@ header p {
 }
 
 /* =========================================================================
+   📋 ESTILOS DO FAQ (SISTEMA ACCORDION)
+   ========================================================================= */
+.faq-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+/* Remove o triângulo padrão dos navegadores (Chrome/Safari/Firefox) */
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+.faq-item summary {
+    list-style: none;
+}
+
+.faq-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--texto-principal);
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-trigger:hover {
+    color: var(--cor-acento);
+}
+
+/* Seta customizada minimalista */
+.faq-icon {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--texto-secundario);
+    border-bottom: 2px solid var(--texto-secundario);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease, border-color 0.2s ease, margin 0.2s ease;
+    margin-right: 12px;
+}
+
+.faq-trigger:hover .faq-icon {
+    border-color: var(--cor-acento);
+}
+
+/* Quando a tag <details> estiver aberta, roda a seta para cima */
+.faq-item[open] .faq-icon {
+    transform: rotate(-135deg);
+    margin-top: 6px;
+}
+
+/* Conteúdo interno da resposta */
+.faq-content {
+    padding-bottom: 24px;
+    color: var(--texto-secundario);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================================
    📱 RESPONSIVIDADE (MOBILE COMFORT)
    ========================================================================= */
 @media (max-width: 768px) {
@@ -397,6 +469,10 @@ header p {
     }
     header h1 {
         font-size: 2rem;
+    }
+    .faq-trigger {
+        font-size: 1rem;
+        padding: 18px 0;
     }
 }
 
