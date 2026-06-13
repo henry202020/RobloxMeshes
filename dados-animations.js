@@ -1,4 +1,7 @@
-// Adicionando itens de Animação na biblioteca principal
+// =========================================================================
+// 🎬 Adicionando itens de Animação na biblioteca principal
+// =========================================================================
+
 bibliotecaMeshes.push(
     {
         id: 10,
@@ -6,6 +9,7 @@ bibliotecaMeshes.push(
         categoria: ["ANIMATIONS"], 
         descricao: "Walk animation for R6.",
         descricaoLonga: "Walk animation for R6.",
+        // 📌 Suporta links de vídeo .mp4 diretos para rodar em loop na galeria
         imagens: ["https://streamable.com/k189jt"],
         linkDownload: "https://seu-link.com",
         formato: ".rbxm",
@@ -13,6 +17,7 @@ bibliotecaMeshes.push(
     }
 );
 
+bibliotecaMeshes.push(
     {
         id: 11,
         nome: "Super Hero Idle R6",
@@ -26,6 +31,7 @@ bibliotecaMeshes.push(
     }
 );
 
+bibliotecaMeshes.push(
     {
         id: 12,
         nome: "Super Hero Idle R6",
