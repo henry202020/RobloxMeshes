@@ -11,23 +11,23 @@ bibliotecaMeshes.push(
         descricaoLonga: "Walk animation for R6.",
         // 📌 Suporta links de vídeo .mp4 diretos para rodar em loop na galeria
         imagens: ["https://streamable.com/k189jt"],
-        linkDownload: "https://seu-link.com",
+        linkDownload: "https://direct-link.net/5591385/6uJYqx314xca",
         formato: ".rbxm",
-        tamanho: "15 KB"
+        tamanho: "8.09 KB"
     }
 );
 
 bibliotecaMeshes.push(
     {
         id: 11,
-        nome: "Super Hero Idle R6",
+        nome: "Walk R6 #2",
         categoria: ["ANIMATIONS"], 
-        descricao: "Animação customizada de repouso.",
-        descricaoLonga: "Torne seu personagem único com esta postura heróica.",
-        imagens: ["https://via.placeholder.com/500x350?text=Animation+1"],
-        linkDownload: "https://seu-link.com",
+        descricao: "Walk animation for R6.",
+        descricaoLonga: "Walk animation for R6.",
+        imagens: ["https://streamable.com/1xx3ot"],
+        linkDownload: "https://link-hub.net/5591385/zFAahdfDAC7C",
         formato: ".rbxm",
-        tamanho: "15 KB"
+        tamanho: "13.66 KB"
     }
 );
 
