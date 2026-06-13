@@ -1,7 +1,7 @@
 // Adicionando itens de Animação na biblioteca principal
 bibliotecaMeshes.push(
     {
-        id: 2,
+        id: 10,
         nome: "Walk R6 #1",
         categoria: ["ANIMATIONS"], 
         descricao: "Walk animation for R6.",
@@ -14,7 +14,7 @@ bibliotecaMeshes.push(
 );
 
     {
-        id: 2,
+        id: 11,
         nome: "Super Hero Idle R6",
         categoria: ["ANIMATIONS"], 
         descricao: "Animação customizada de repouso.",
@@ -27,7 +27,7 @@ bibliotecaMeshes.push(
 );
 
     {
-        id: 2,
+        id: 12,
         nome: "Super Hero Idle R6",
         categoria: ["ANIMATIONS"], 
         descricao: "Animação customizada de repouso.",
