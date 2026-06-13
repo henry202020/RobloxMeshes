@@ -24,7 +24,7 @@ bibliotecaMeshes.push(
         categoria: ["ANIMATIONS"], 
         descricao: "Walk animation for R6.",
         descricaoLonga: "Walk animation for R6.",
-        imagens: ["https://streamable.com/kuh1rd"],
+        imagens: ["https://streamable.com/7m9oxn"],
         linkDownload: "https://link-hub.net/5591385/zFAahdfDAC7C",
         formato: ".rbxm",
         tamanho: "13.66 KB"
