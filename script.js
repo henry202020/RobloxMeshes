@@ -78,18 +78,26 @@ function criarBotaoFiltro(categoriaNome) {
     return btn;
 }
 
-// Função auxiliar para verificar se o arquivo é um vídeo
+// 🛠️ CORREÇÃO: Verifica se o arquivo é vídeo por extensão ou link do Streamable
 function verificarSeEhVideo(url) {
     const urlLower = url.toLowerCase();
-    return urlLower.endsWith('.mp4') || urlLower.endsWith('.webm');
+    return urlLower.endsWith('.mp4') || urlLower.endsWith('.webm') || urlLower.includes('streamable.com');
 }
 
-// Retorna a tag correta (video ou img) baseada no link do arquivo
+// 🛠️ ATUALIZAÇÃO: Retorna a tag de vídeo adaptada para suportar loops nativos ou embeds do Streamable
 function gerarTagMidia(url, idAtributo = "") {
     const idStr = idAtributo ? `id="${idAtributo}"` : "";
+    
     if (verificarSeEhVideo(url)) {
-        return `<video ${idStr} src="${escapeHTML(url)}" autoplay loop muted playsinline></video>`;
+        // Se for um link padrão do Streamable, converte para o formato de player direto deles
+        if (url.includes('streamable.com') && !url.includes('/e/')) {
+            const videoId = url.split('/').pop();
+            return `<iframe ${idStr} src="https://streamable.com/e/${videoId}?autoplay=1&nocontrols=1&loop=1&muted=1" width="100%" height="100%" frameborder="0" allow="autoplay" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; object-fit: contain;"></iframe>`;
+        }
+        // Caso seja um arquivo de vídeo direto (.mp4 / .webm)
+        return `<video ${idStr} src="${escapeHTML(url)}" autoplay loop muted playsinline style="width:100%; height:100%; object-fit: contain;"></video>`;
     } else {
+        // Retorna imagem comum caso contrário
         return `<img ${idStr} src="${escapeHTML(url)}" alt="Asset Media">`;
     }
 }
@@ -119,14 +127,12 @@ function renderizarBiblioteca() {
         card.className = "card-mesh";
         const midiaCapaUrl = item.imagens[0] || "";
         
-        // Gera dinamicamente se o card principal vai ter uma tag <video> ou <img>
         const tagMidiaCapa = gerarTagMidia(midiaCapaUrl);
-
         const categoriasTexto = Array.isArray(item.categoria) ? item.categoria.join(" / ") : item.categoria;
 
         card.innerHTML = `
-            <div class="img-container" onclick="window.location.href='produto.html?id=${item.id}'">
-                <span class="badge-categoria">${escapeHTML(categoriasTexto)}</span>
+            <div class="img-container" onclick="window.location.href='produto.html?id=${item.id}'" style="position: relative; overflow: hidden;">
+                <span class="badge-categoria" style="z-index: 10;">${escapeHTML(categoriasTexto)}</span>
                 ${tagMidiaCapa}
             </div>
             <div class="card-content">
@@ -173,17 +179,16 @@ function carregarPaginaProduto() {
     const mostrarSetas = fotosDoProduto.length > 1 ? 'flex' : 'none';
     const categoriasTexto = Array.isArray(produto.categoria) ? produto.categoria.join(" / ") : produto.categoria;
 
-    // Gera a primeira mídia do slider interno (pode ser vídeo ou imagem)
     const tagMidiaSlider = gerarTagMidia(fotosDoProduto[0], "slider-img");
 
     container.innerHTML = `
         <a href="index.html" class="btn-back">← Back to Gallery</a>
         <div class="produto-wrapper">
-            <div class="produto-media">
-                <div class="slider-container" id="slider-media-box">
+            <div class="produto-media" style="position: relative; overflow: hidden;">
+                <div class="slider-container" id="slider-media-box" style="width:100%; height:100%;">
                     ${tagMidiaSlider}
-                    <button class="slide-nav prev" style="display: ${mostrarSetas}" onclick="mudarSlide(-1)">&#10094;</button>
-                    <button class="slide-nav next" style="display: ${mostrarSetas}" onclick="mazerSlide(1)">&#10095;</button>
+                    <button class="slide-nav prev" style="display: ${mostrarSetas}; z-index: 15;" onclick="mudarSlide(-1)">&#10094;</button>
+                    <button class="slide-nav next" style="display: ${mostrarSetas}; z-index: 15;" onclick="mazerSlide(1)">&#10095;</button>
                 </div>
             </div>
             <div class="produto-info">
@@ -217,21 +222,17 @@ window.mudarSlide = function(direcao) {
     
     const sliderBox = document.getElementById("slider-media-box");
     if (sliderBox) {
-        // Remove os botões temporariamente para reconstruir a tag de mídia sem deletá-los
         const prevBtn = sliderBox.querySelector(".slide-nav.prev");
         const nextBtn = sliderBox.querySelector(".slide-nav.next");
         
-        // Reconstrói o conteúdo interno baseado se o próximo slide é vídeo ou imagem
         const novaMidiaUrl = fotosDoProduto[slideIndex];
         const novaTag = gerarTagMidia(novaMidiaUrl, "slider-img");
         
         sliderBox.innerHTML = novaTag;
         
-        // Readiciona os botões de navegação
         if (prevBtn) sliderBox.appendChild(prevBtn);
         if (nextBtn) sliderBox.appendChild(nextBtn);
 
-        // Aplica a animação de Fade no novo elemento criado
         const elementoCriado = document.getElementById("slider-img");
         if (elementoCriado) {
             elementoCriado.classList.add("fade-anim");
@@ -241,9 +242,10 @@ window.mudarSlide = function(direcao) {
 
 window.mazerSlide = window.mudarSlide;
 
+// 🛠️ CORREÇÃO: Ajustado caractere de fechamento da tag '>' que quebrava o HTML
 function escapeHTML(string) {
     return String(string).replace(/[&<>"']/g, function (s) {
-        return { '&': '&amp;', '<': '&lt;', '>': '>‘', '"': '&quot;', "'": '&#39;' }[s];
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
     });
 }
 
