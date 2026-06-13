@@ -54,16 +54,16 @@ bibliotecaMeshes.push(
     },
     {
         id: 3,
-        nome: "Nome do Novo Item 2",
+        nome: "???",
         categoria: ["ANIMATIONS"], 
         descricao: "Descrição curta que aparece no card principal.",
         descricaoLonga: "Descrição detalhada que aparece na página interna do produto.",
         imagens: [
-            "https://i.postimg.cc/XYzNYXcB/Female-Body-R6v2-Pleasant-Ana.png", 
-            "https://i.postimg.cc/zvLtrz58/Front.png", 
-            "https://i.postimg.cc/J0y6Lrmm/Back.png", 
-            "https://i.postimg.cc/D0WjTvF2/Left.png", 
-            "https://i.postimg.cc/yxJQH1Bd/Right.png"
+            "https://i.postimg.cc/Hsz4KtYN/placeholder.jpg", 
+            "https://i.postimg.cc/Hsz4KtYN/placeholder.jpg", 
+            "https://i.postimg.cc/Hsz4KtYN/placeholder.jpg", 
+            "https://i.postimg.cc/Hsz4KtYN/placeholder.jpg", 
+            "https://i.postimg.cc/Hsz4KtYN/placeholder.jpg"
         ],
         linkDownload: "https://seu-link-aqui.com",
         formato: ".ZIP / .fbx",
