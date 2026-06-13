@@ -10,7 +10,7 @@ bibliotecaMeshes.push(
         descricao: "Walk animation for R6.",
         descricaoLonga: "Walk animation for R6.",
         // 📌 Suporta links de vídeo .mp4 diretos para rodar em loop na galeria
-        imagens: ["https://streamable.com/k189jt"],
+        imagens: ["https://streamable.com/7m9oxn"],
         linkDownload: "https://direct-link.net/5591385/6uJYqx314xca",
         formato: ".rbxm",
         tamanho: "8.09 KB"
@@ -24,7 +24,7 @@ bibliotecaMeshes.push(
         categoria: ["ANIMATIONS"], 
         descricao: "Walk animation for R6.",
         descricaoLonga: "Walk animation for R6.",
-        imagens: ["https://streamable.com/7m9oxn"],
+        imagens: ["https://streamable.com/kuh1rd"],
         linkDownload: "https://link-hub.net/5591385/zFAahdfDAC7C",
         formato: ".rbxm",
         tamanho: "13.66 KB"
@@ -34,7 +34,7 @@ bibliotecaMeshes.push(
 bibliotecaMeshes.push(
     {
         id: 12,
-        nome: "Placeholder",
+        nome: "?",
         categoria: ["ANIMATIONS"], 
         descricao: "?",
         descricaoLonga: "?",
